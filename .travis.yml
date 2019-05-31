@@ -1,0 +1,9 @@
+sudo: required
+
+services: 
+  - docker
+before_install:
+  - docker build -t mikaelnandoca/docker-workshop -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true mikaelnandoca/docker-workshop npm run test -- --coverage
