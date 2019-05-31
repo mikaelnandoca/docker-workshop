@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run -e CI=true mikaelnandoca/docker-workshop npm run test -- --coverage
+
+deploy:
+  provider: "elasticbeanstalk"
+  region: "eu-west-2"
+  app: "mikaelnandoca"
+  env: "Mikaelnandoca-env"
+  bucket_name: "elasticbeanstalk-eu-west-2-262517256597"
+  bucket_path: "mikaelnandoca"
+  on:
+    branch: "master"
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
